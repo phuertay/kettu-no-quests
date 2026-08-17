@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "token-savior": {
+      "command": "python3",
+      "args": ["-m", "token_savior.server"],
+      "env": {
+        "WORKSPACE_ROOTS": "/workspace",
+        "TOKEN_SAVIOR_CLIENT": "cursor",
+        "TOKEN_SAVIOR_PROFILE": "optimized"
+      }
+    }
+  }
+}

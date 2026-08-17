@@ -1,0 +1,4 @@
+{
+  "name": "kettu-no-quests",
+  "install": "bash scripts/setup-agent-tools.sh"
+}

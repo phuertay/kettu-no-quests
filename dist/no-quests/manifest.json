@@ -1,0 +1,1 @@
+{"name":"NoQuests","description":"Disable Discord Quests: block quest fetches, empty the quest store, and swallow quest Flux events.","authors":[{"name":"phuertay","id":"0"}],"main":"index.js","vendetta":{"icon":"ic_close_16px"},"hash":"855257d9ed52e79e2203817a6ab71ab9390eb9404351e66200032e4569d95f7b"}
