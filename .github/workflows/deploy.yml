@@ -1,40 +1,30 @@
-name: Build and deploy
+name: Deploy plugin
 
 on:
   push:
     branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
 
 jobs:
   deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
-
     steps:
       - uses: actions/checkout@v4
-
-      - uses: actions/setup-node@v4
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
         with:
-          node-version: "22"
-
-      - run: npm install --global pnpm
-
-      - run: pnpm install --frozen-lockfile
-
-      - run: pnpm test
-
-      - run: node ./build.mjs
-
-      - name: Copy additional files
-        run: |
-          cp README.md dist/README.md
-          printf -- "---\npermalink: /404.html\n---\n" > dist/404.md
-          printf -- "> **Note:** Copy the plugin URL into Kettu. Do not open it in a browser.\n\n" >> dist/404.md
-          cat README.md >> dist/404.md
-
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
-          enable_jekyll: true
+          path: dist
+      - id: deployment
+        uses: actions/deploy-pages@v4

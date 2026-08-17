@@ -6,11 +6,24 @@ It blocks quest REST calls, empties the quest store, and drops `QUESTS_*` Flux e
 
 ## Install
 
-In Kettu: **Settings → Plugins → +** and paste one of:
+Kettu fetches `{url}/manifest.json`. The URL **must end with a slash**.
+
+In Kettu: **Settings → Plugins → +** and paste:
 
 ```
-https://phuertay.github.io/kettu-no-quests/no-quests
-https://cdn.jsdelivr.net/gh/phuertay/kettu-no-quests/dist/no-quests
+https://raw.githubusercontent.com/phuertay/kettu-no-quests/main/dist/no-quests/
+```
+
+If Kettu warns that the source is unproxied, confirm install. If it still fails, try:
+
+```
+https://cdn.jsdelivr.net/gh/phuertay/kettu-no-quests@main/dist/no-quests/
+```
+
+GitHub Pages (after the deploy workflow runs):
+
+```
+https://phuertay.github.io/kettu-no-quests/no-quests/
 ```
 
 ## Develop
